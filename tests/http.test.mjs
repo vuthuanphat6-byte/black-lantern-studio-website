@@ -16,6 +16,7 @@ test("production HTTP routes, contact persistence, security and restart", async 
         SITE_ORIGIN: "https://blacklantern.games",
         CONTACT_DIR: dir,
         NODE_ENV: "production",
+        TRUST_CLOUDFLARE: "1",
       },
       stdio: ["ignore", "pipe", "pipe"],
     });
@@ -57,6 +58,13 @@ test("production HTTP routes, contact persistence, security and restart", async 
   };
   try {
     let url = await launch();
+    await t.test("redirects HTTP from trusted proxy to canonical HTTPS", async () => {
+      const r = await fetch(url + "/tro-choi/?ref=test", { redirect: "manual", headers: {"X-Forwarded-Proto":"http"} });
+      assert.equal(r.status, 308);
+      assert.equal(r.headers.get("location"), "https://blacklantern.games/tro-choi/?ref=test");
+      const unsafe = await fetch(url + "/%2Ftro-choi/", {redirect:"manual"});
+      assert.equal(unsafe.status, 404);
+    });
     await t.test("healthy site and actual 404", async () => {
       assert.equal((await fetch(url + "/")).status, 200);
       assert.equal((await fetch(url + "/missing-page/")).status, 404);

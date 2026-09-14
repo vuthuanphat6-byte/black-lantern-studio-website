@@ -6,6 +6,8 @@ Cloudflare HTTPS → tunnel hiện có → HTTP loopback 127.0.0.1:4280 → serv
 
 Code root-owned trong `/srv/black-lantern/releases/<id>`; `current` trỏ bản đang chạy. User app không được sửa code. `/var/lib/black-lantern` riêng tư mode 0700, không thuộc webroot/repo. RAM 256 MB, CPU 50%, tối đa 64 tác vụ.
 
+Runtime riêng: `/srv/black-lantern/runtime/node-v24.21.0-linux-x64/bin/node`, tải từ https://nodejs.org/dist/v24.21.0/ và xác minh SHA-256 theo manifest chính thức. Không thay Node global của host. Runtime archive SHA-256: `fd8e59d5a511510f6a298afb548f18c7d2b1be404d8b4a27d94fbe49f56cb2d6`. HTTP qua tunnel được chuyển 308 về HTTPS cùng path/query. Local preview có X-Robots-Tag noindex.
+
 ## Release
 
 1. Kiểm tra `.gitignore` và secrets trước push. Build/test/audit phải qua.
@@ -31,8 +33,8 @@ Log chỉ mã lời nhắn/lỗi tổng quát, không ghi email hoặc nội dun
 Chỉ quản trị SSH đọc được; không có admin public hoặc SMTP ở bản này.
 
 ```sh
-sudo -u blacklantern /usr/local/bin/node /srv/black-lantern/current/scripts/inbox.mjs
-sudo -u blacklantern /usr/local/bin/node /srv/black-lantern/current/scripts/inbox.mjs BL-UUID-CUA-LOI-NHAN
+sudo -u blacklantern /srv/black-lantern/runtime/node-v24.21.0-linux-x64/bin/node /srv/black-lantern/current/scripts/inbox.mjs
+sudo -u blacklantern /srv/black-lantern/runtime/node-v24.21.0-linux-x64/bin/node /srv/black-lantern/current/scripts/inbox.mjs BL-UUID-CUA-LOI-NHAN
 ```
 
 Lệnh đầu liệt kê mã/thời gian/chủ đề; lệnh sau dùng UUID thật để đọc và phản hồi bằng email studio. Không copy dữ liệu vào issue công khai/log CI. Dữ liệu tự xóa sau 30 ngày, dọn mỗi giờ.

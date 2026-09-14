@@ -9,7 +9,7 @@ Type=simple
 User=blacklantern
 Group=blacklantern
 WorkingDirectory=/srv/black-lantern/current
-ExecStart=/usr/local/bin/node /srv/black-lantern/current/server/index.mjs
+ExecStart=/srv/black-lantern/runtime/node-v24.21.0-linux-x64/bin/node /srv/black-lantern/current/server/index.mjs
 Environment=NODE_ENV=production
 Environment=HOST=127.0.0.1
 Environment=PORT=4280

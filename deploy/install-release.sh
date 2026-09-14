@@ -7,7 +7,7 @@ base=/srv/black-lantern
 target="$base/releases/$release"
 test -f "$target/dist/index.html"
 test -f "$target/server/index.mjs"
-test -x /usr/local/bin/node
+test -x /srv/black-lantern/runtime/node-v24.21.0-linux-x64/bin/node
 if ! getent passwd blacklantern >/dev/null; then
   useradd --system --user-group --home-dir /var/lib/black-lantern --no-create-home --shell /usr/sbin/nologin blacklantern
 else

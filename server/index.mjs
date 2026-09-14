@@ -60,6 +60,7 @@ const mime = {
 };
 const cache = new Map();
 function baseHeaders(res) {
+  if (!isProduction) res.setHeader("X-Robots-Tag", "noindex");
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("X-Frame-Options", "DENY");
@@ -176,6 +177,13 @@ const server = http.createServer(async (req, res) => {
   baseHeaders(res);
   try {
     const url = new URL(req.url, "http://localhost");
+    const peerAddress = req.socket.remoteAddress || "";
+    const trustedProxy = process.env.TRUST_CLOUDFLARE === "1" &&
+      ["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(peerAddress);
+    if (isProduction && trustedProxy && req.headers["x-forwarded-proto"] === "http") {
+      res.writeHead(308, { Location: origin + url.pathname + url.search, "Cache-Control": "no-store" });
+      return res.end();
+    }
     if (url.pathname === "/api/health") {
       if (req.method !== "GET" && req.method !== "HEAD")
         return json(res, 405, { ok: false });
