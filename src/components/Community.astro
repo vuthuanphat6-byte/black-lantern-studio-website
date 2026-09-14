@@ -1,4 +1,13 @@
 ---
-import Artwork from './Artwork.astro';import {site} from '../data/site';
+import Artwork from './Artwork.astro';
+import { site } from '../data/site';
 ---
-<section class="community"><Artwork kind="lotus" class="community-art" /><div class="container community-content"><p class="eyebrow">MỖI CÂU CHUYỆN ĐỀU CẦN NGƯỜI ĐỒNG HÀNH</p><h2>Cùng viết tiếp hành trình.</h2><p>Theo dõi những cập nhật và câu chuyện sáng tạo từ Black Lantern Studio.</p><a class="button" href={site.facebook} target="_blank" rel="noopener noreferrer">Theo dõi Facebook ↗</a></div></section>
+<section class="community">
+  <Artwork kind="lotus" class="community-art" />
+  <div class="container community-content">
+    <p class="eyebrow">MỖI CÂU CHUYỆN ĐỀU CẦN NGƯỜI ĐỒNG HÀNH</p>
+    <h2>Hành trình này sẽ ý nghĩa hơn khi có bạn.</h2>
+    <p>Bạn yêu thích những trò chơi có câu chuyện, quan tâm đến game Việt, hay muốn đồng hành cùng studio? Theo dõi Black Lantern để đón những chia sẻ và cập nhật tiếp theo.</p>
+    <div class="hero-actions"><a class="button" href={site.facebook} target="_blank" rel="noopener noreferrer">Theo dõi Black Lantern ↗</a><a class="button button-outline" href="/lien-he/">Trao đổi cùng studio</a></div>
+  </div>
+</section>

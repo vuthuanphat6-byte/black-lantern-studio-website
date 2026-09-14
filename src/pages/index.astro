@@ -1,9 +1,71 @@
 ---
-import {getCollection} from 'astro:content';import SiteLayout from '../layouts/SiteLayout.astro';import Hero from '../components/Hero.astro';import Artwork from '../components/Artwork.astro';import SectionHeading from '../components/SectionHeading.astro';import NewsCard from '../components/NewsCard.astro';import Community from '../components/Community.astro';
-const news=(await getCollection('news',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+import { getCollection } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Hero from '../components/Hero.astro';
+import Artwork from '../components/Artwork.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Community from '../components/Community.astro';
+import { site } from '../data/site';
+const news = (await getCollection('news', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<SiteLayout title="Trang chủ"><Hero home title="Thắp sáng những câu chuyện Việt." description="Studio game độc lập từ Việt Nam. Chúng tôi kể chuyện bằng trò chơi."><a class="button" href="/tro-choi/">Khám phá trò chơi →</a><a class="button button-outline" href="/ve-studio/">Về chúng tôi</a></Hero>
-<div class="quicklinks container"><a href="/tro-choi/"><span class="quick-icon" aria-hidden="true">◇</span><span>Trò chơi của chúng tôi<small>Những hành trình đang thành hình</small></span><b aria-hidden="true">↗</b></a><a href="/tin-tuc/"><span class="quick-icon" aria-hidden="true">▤</span><span>Góc sáng tạo<small>Câu chuyện phía sau ngọn đèn</small></span><b aria-hidden="true">↗</b></a><a href="/lien-he/"><span class="quick-icon" aria-hidden="true">✧</span><span>Kết nối cùng studio<small>Một ý tưởng, nhiều khả năng</small></span><b aria-hidden="true">↗</b></a></div>
-<section class="section container"><SectionHeading title="Những thế giới đang ấp ủ" /><a class="game-feature" href="/tro-choi/du-an-dau-tien/"><Artwork kind="lotus" class="feature-art" /><div class="feature-content"><span class="badge">Từ những ý tưởng đầu tiên</span><h2>Một hành trình<br />đang được thắp sáng.</h2><p>Cảm hứng Việt. Tinh thần khám phá. Những câu chuyện chờ được kể.</p><span class="button">Tìm hiểu định hướng →</span></div><span class="art-caption">Tranh ý tưởng của studio</span></a></section>
-<section class="section container"><SectionHeading title="Tin tức & góc sáng tạo" href="/tin-tuc/" /><div class="cards-grid">{news.slice(0,3).map(entry=><NewsCard entry={entry} />)}</div></section>
-<section class="section container studio-split"><div class="studio-visual"><Artwork alt="Dòng sông và làng quê trong tranh ý tưởng của Black Lantern Studio" /><span class="floating-label">TỪ VIỆT NAM<br />VỚI TRÍ TƯỞNG TƯỢNG</span></div><div><p class="eyebrow">VỀ BLACK LANTERN</p><h2>Người Việt.<br />Câu chuyện Việt.</h2><p>Chúng tôi tin rằng trò chơi có thể mở ra những cuộc phiêu lưu và lưu giữ những cảm xúc rất riêng.</p><p>Black Lantern Studio là studio game độc lập tại Việt Nam, theo đuổi những trải nghiệm giàu cảm xúc và cốt truyện.</p><a class="button button-outline" href="/ve-studio/">Câu chuyện của studio →</a></div></section><Community /></SiteLayout>
+<SiteLayout title="Trang chủ">
+  <Hero home eyebrow="BLACK LANTERN STUDIO · MỘT NHÁNH CỦA CYNO" title="Thắp sáng những câu chuyện Việt." description="Chúng tôi làm game để kể những câu chuyện đáng nhớ. Từ cảnh sắc, văn hóa và những điều thân thuộc của Việt Nam, Black Lantern Studio tìm cảm hứng xây dựng những thế giới để bạn khám phá, trải nghiệm và kết nối.">
+    <a class="button" href="/tro-choi/">Khám phá trò chơi →</a>
+    <a class="button button-outline" href="/ve-studio/">Câu chuyện của studio</a>
+  </Hero>
+
+  <div class="quicklinks container">
+    <a href="/tro-choi/"><span class="quick-icon" aria-hidden="true">◇</span><span>Trò chơi của chúng tôi<small>Những hành trình đang thành hình</small></span><b aria-hidden="true">↗</b></a>
+    <a href="/tin-tuc/"><span class="quick-icon" aria-hidden="true">▤</span><span>Góc sáng tạo<small>Câu chuyện phía sau ngọn đèn</small></span><b aria-hidden="true">↗</b></a>
+    <a href="/lien-he/"><span class="quick-icon" aria-hidden="true">✧</span><span>Kết nối cùng studio<small>Một ý tưởng, nhiều khả năng</small></span><b aria-hidden="true">↗</b></a>
+  </div>
+
+  <section class="section container">
+    <SectionHeading title="Một thế giới mới đang thành hình." />
+    <p>Mỗi trò chơi bắt đầu từ một câu hỏi: điều gì sẽ khiến người chơi muốn bước tiếp?</p>
+    <p>Với Black Lantern, đó có thể là ánh đèn phía cuối con đường, một nhân vật chưa kể hết câu chuyện, hay cảm giác quen thuộc giữa một thế giới xa lạ. Chúng tôi đang khám phá những ý tưởng đầu tiên cho hành trình ấy.</p>
+    <a class="game-feature" href="/tro-choi/du-an-dau-tien/">
+      <Artwork kind="lotus" class="feature-art" />
+      <div class="feature-content">
+        <span class="badge">Dự án đầu tiên · Chưa công bố</span>
+        <h2>Một hành trình<br />đang được thắp sáng.</h2>
+        <p>Cảm hứng Việt. Tinh thần khám phá. Những câu chuyện chờ được kể.</p>
+        <span class="button">Khám phá định hướng sáng tạo →</span>
+      </div>
+      <span class="art-caption">Tranh minh họa ý tưởng</span>
+    </a>
+    <p class="note">Tranh minh họa ý tưởng, không phải hình ảnh gameplay. Thông tin trò chơi sẽ được cập nhật khi chính thức công bố.</p>
+  </section>
+
+  <section class="section container">
+    <SectionHeading title="Chất Việt trong cách chúng tôi kể chuyện." />
+    <p>Không chỉ nằm ở bối cảnh hay hình ảnh, bản sắc còn đến từ những chi tiết nhỏ: cách một nhân vật trò chuyện, âm thanh của một khoảng sân, hay cảm giác khi trở về một nơi quen thuộc.</p>
+    <div class="values-grid">
+      <article><span>01 / BẢN SẮC</span><h3>Bản sắc từ điều gần gũi</h3><p>Tìm cảm hứng trong cảnh quan, đời sống và văn hóa Việt Nam để mở ra những thế giới có dấu ấn riêng.</p></article>
+      <article><span>02 / CẢM XÚC</span><h3>Cảm xúc dẫn đường</h3><p>Theo đuổi những câu chuyện và nhân vật có thể khiến người chơi quan tâm, đồng cảm và nhớ đến sau cuộc chơi.</p></article>
+      <article><span>03 / KHÁM PHÁ</span><h3>Trải nghiệm mời gọi khám phá</h3><p>Hướng tới sự kết nối giữa hình ảnh, âm thanh, câu chuyện và tương tác — để người chơi tự tìm thấy điều thú vị trên hành trình.</p></article>
+    </div>
+  </section>
+
+  <section class="section container studio-split">
+    <div class="studio-visual"><Artwork alt="Dòng sông và làng quê trong tranh ý tưởng của Black Lantern Studio" /><span class="floating-label">TỪ VIỆT NAM<br />VỚI TRÍ TƯỞNG TƯỢNG</span></div>
+    <div>
+      <p class="eyebrow">BLACK LANTERN & CYNO</p>
+      <h2>Một nhánh của Cyno.<br />Một hành trình dành cho trò chơi.</h2>
+      <p>Black Lantern Studio là nhánh phát triển game của Cyno, tập trung vào những trải nghiệm giàu cảm xúc và cốt truyện.</p>
+      <p>Trong khi <a class="text-link" href={site.parent.url} target="_blank" rel="noopener noreferrer">Cyno</a> phát triển các giải pháp phần mềm và sản phẩm số cho doanh nghiệp, Black Lantern mở ra một hướng sáng tạo riêng: kể chuyện thông qua trò chơi.</p>
+      <p>Chúng tôi mong muốn tạo nên những thế giới mang cảm hứng Việt Nam, nơi người chơi không chỉ theo dõi một câu chuyện mà còn được tham gia và trở thành một phần của nó.</p>
+      <div class="hero-actions"><a class="button button-outline" href="/ve-studio/">Tìm hiểu Black Lantern</a><a class="text-link" href={site.parent.url} target="_blank" rel="noopener noreferrer">Khám phá Cyno ↗</a></div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading title="Phía sau mỗi ánh đèn là một câu chuyện." href="/tin-tuc/" />
+    <p>Những chia sẻ về cảm hứng, góc nhìn sáng tạo và hành trình phát triển của Black Lantern Studio.</p>
+    <div class="cards-grid">{news.slice(0, 3).map(entry => <NewsCard entry={entry} />)}</div>
+    <p><a class="text-link" href="/tin-tuc/">Khám phá góc sáng tạo →</a></p>
+  </section>
+  <Community />
+</SiteLayout>
