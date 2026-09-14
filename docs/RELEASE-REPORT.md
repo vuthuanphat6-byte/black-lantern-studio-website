@@ -22,6 +22,8 @@ Google Search Console đã xác minh quyền sở hữu URL-prefix `https://blac
 
 Live URL test lúc 08:49 ngày 14/09/2026: Googlebot xác nhận **Google có thể lập chỉ mục URL này / Trang có thể lập chỉ mục**. Đây là kiểm tra thực từ Google, khác với việc giả lập User-Agent bằng curl.
 
+Đã gửi yêu cầu lập chỉ mục trang chủ. Search Console xác nhận **URL đã được thêm vào hàng đợi ưu tiên thu thập dữ liệu**; chưa khẳng định trang đã xuất hiện trên kết quả tìm kiếm.
+
 ## Bằng chứng kiểm thử
 
 - Build: 12 HTML qua kiểm tra title, description, canonical, một H1, JSON-LD hợp lệ, liên kết/asset nội bộ.
