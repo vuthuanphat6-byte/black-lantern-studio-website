@@ -329,7 +329,8 @@ const server = http.createServer(async (req, res) => {
         cache.set(path, item);
       }
       res.setHeader("Content-Security-Policy", item.csp);
-      res.setHeader("Cache-Control", "public,max-age=0,must-revalidate");
+      // Keep HTML byte-exact: CSP hashes and privacy exclude proxy-injected analytics.
+      res.setHeader("Cache-Control", "public,max-age=0,must-revalidate,no-transform");
       res.setHeader("Content-Length", item.content.length);
       res.writeHead(status);
       return res.end(req.method === "HEAD" ? undefined : item.content);
