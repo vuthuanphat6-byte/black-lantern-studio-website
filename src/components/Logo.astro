@@ -1,0 +1,6 @@
+---
+import {Image} from 'astro:assets';
+import logo from '../assets/logo-original.jpg';
+const {large=false}=Astro.props;
+---
+<a class:list={['brand',{large}]} href="/" aria-label="Black Lantern Studio — Trang chủ"><Image src={logo} width={large?160:66} height={large?160:66} format="webp" alt="" loading="eager" /><span>BLACK LANTERN<small>STUDIO</small></span></a>

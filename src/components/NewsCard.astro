@@ -1,0 +1,5 @@
+---
+import Artwork from './Artwork.astro';
+const {entry}=Astro.props;
+---
+<article class="news-card" data-category={entry.data.category}><a class="card-picture" href={'/tin-tuc/'+entry.id+'/'} aria-label={entry.data.title}><Artwork kind={entry.data.image} /></a><div class="card-body"><span class="badge">{entry.data.category}</span><h3><a href={'/tin-tuc/'+entry.id+'/'}>{entry.data.title}</a></h3><p>{entry.data.description}</p><a class="text-link" href={'/tin-tuc/'+entry.id+'/'}>Đọc bài viết →</a></div></article>

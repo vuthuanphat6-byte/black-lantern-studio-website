@@ -1,0 +1,35 @@
+# Local secrets: configure before committing or pushing.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+secrets/
+# Dependencies and generated output
+node_modules/
+dist/
+.astro/
+coverage/
+playwright-report/
+test-results/
+# Local runtime, logs and backups
+*.log
+*.tsbuildinfo
+tmp/
+.cache/
+backups/
+.DS_Store
+Thumbs.db
+.local-data/
+output/
+design/
+# Local planning documents contain workstation/deployment details.
+docs/BUILD-PLAN.md
+docs/BACKLOG.md
+docs/CONTENT-INVENTORY.md
+docs/PRIVATE-DEPLOYMENT.md
+release-*.tar.gz

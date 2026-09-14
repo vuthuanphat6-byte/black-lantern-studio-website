@@ -1,0 +1,8 @@
+---
+import {getCollection} from 'astro:content';import SiteLayout from '../../layouts/SiteLayout.astro';import Hero from '../../components/Hero.astro';import NewsCard from '../../components/NewsCard.astro';import Community from '../../components/Community.astro';
+const entries=(await getCollection('news',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+---
+<SiteLayout title="Tin tức & góc sáng tạo" description="Những cập nhật, góc nhìn sáng tạo và câu chuyện từ Black Lantern Studio. Khám phá hành trình làm game giàu cảm xúc từ Việt Nam."><Hero eyebrow="TỪ BLACK LANTERN" title="Chuyện phía sau ngọn đèn." description="Những chia sẻ, cảm hứng và góc nhìn trên hành trình làm trò chơi." /><section class="section container"><div class="filters" role="group" aria-label="Lọc chuyên mục">{['Tất cả','Studio','Góc sáng tạo'].map((cat,i)=><button class:list={['filter',{active:i===0}]} data-filter={cat} aria-pressed={i===0?'true':'false'}>{cat}</button>)}</div><p id="filter-status" class="sr-only" aria-live="polite"></p><div class="cards-grid">{entries.map(entry=><NewsCard entry={entry} />)}</div></section><Community />
+<script>
+document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(item=>{item.classList.toggle('active',item===button);item.setAttribute('aria-pressed',String(item===button));});let count=0;document.querySelectorAll<HTMLElement>('[data-category]').forEach(card=>{const show=button.dataset.filter==='Tất cả'||card.dataset.category===button.dataset.filter;card.hidden=!show;if(show)count++;});document.getElementById('filter-status')!.textContent=count+' bài viết';}));
+</script></SiteLayout>

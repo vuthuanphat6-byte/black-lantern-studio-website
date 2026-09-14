@@ -1,0 +1,8 @@
+---
+import {Image} from 'astro:assets';
+import hero from '../assets/hero-vietnam.png';
+import lotus from '../assets/lotus-river.png';
+interface Props {kind?:'hero'|'lotus';alt?:string;eager?:boolean;class?:string;}
+const {kind='hero',alt='',eager=false,class:cls=''}=Astro.props;
+---
+<Image src={kind==='lotus'?lotus:hero} alt={alt} widths={[480,768,1200,1680]} sizes={eager?'(max-width: 768px) 1000px, 100vw':'(max-width: 768px) 100vw, 1200px'} format="webp" quality={78} loading={eager?'eager':'lazy'} fetchpriority={eager?'high':'auto'} class={cls} />

@@ -1,0 +1,5 @@
+---
+import Artwork from './Artwork.astro';
+const {eyebrow='BLACK LANTERN STUDIO',title,description,kind='hero',home=false}=Astro.props;
+---
+<section class:list={['hero',{'hero-home':home}]}><Artwork kind={kind} eager class="hero-art" /><div class="hero-shade"></div><div class="container hero-content"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1>{description&&<p class="hero-description">{description}</p>}<div class="hero-actions"><slot /></div></div></section>
