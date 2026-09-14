@@ -1,0 +1,20 @@
+---
+const faces = Array.from({length: 12});
+---
+<div class="lantern-scene" aria-hidden="true">
+  <div class="scene-halo"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+  <div class="scene-perspective">
+    {['lantern-main', 'lantern-small'].map(size => (
+      <div class:list={['lantern-hanger', size]}>
+        <div class="lantern-cord"></div>
+        <div class="lantern-float"><div class="lantern-model">
+          <div class="lantern-cap cap-top"></div>
+          {faces.map(() => <div class="lantern-face"><span></span></div>)}
+          <div class="lantern-cap cap-bottom"></div><div class="lantern-tassel"></div>
+        </div></div>
+      </div>
+    ))}
+  </div>
+  <div class="scene-sparks">{Array.from({length: 8}).map(() => <i></i>)}</div>
+  <span class="scene-cross cross-one">+</span><span class="scene-cross cross-two">+</span><span class="scene-seal">VIỆT<br />NAM</span>
+</div>
